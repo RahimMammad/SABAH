@@ -1,27 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const validationSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(4, 'Username must be at least 4 characters')
-    .required('Username is required'),
-  password: Yup.string()
-    .min(8, 'Password must be at least 8 characters')
-    .required('Password is required'),
-});
 
+  
 const SignUpForm = () => {
-  const initialValues = {
-    username: '',
-    password: '',
-  };
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+     
+    const initialValues = {
+      username: '',
+      password: '',
+    };
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    // Handle form submission here
-    console.log(values);
-    setSubmitting(false);
-  };
+    const handleSubmit = (values, { setSubmitting }) => {
+      console.log(values);
+      setSubmitting(false);
+    };
+  
+    const validationSchema = Yup.object().shape({
+      username: Yup.string()
+        .min(4, 'Username must be at least 4 characters')
+        .required('Username is required'),
+      password: Yup.string()
+        .min(8, 'Password must be at least 8 characters')
+        .required('Password is required'),
+    });
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -44,6 +48,7 @@ const SignUpForm = () => {
                   <Field
                     type="text"
                     name="username"
+                    value={username}
                     id="username"
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Username"
@@ -58,6 +63,7 @@ const SignUpForm = () => {
                     type="password"
                     name="password"
                     id="password"
+                    value={password}
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Password"
                   />
