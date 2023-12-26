@@ -55,12 +55,12 @@ export const loginUser = async (req, res) => {
     try {
         const { username, password } = req.query
         console.log(username,password );
-        const findUser = await UserSchema.findOne({username})
-        console.log(findUser);
-        if (!findUser) {
+        const user = await UserSchema.findOne({username})
+        console.log(user);
+        if (!user) {
             res.status(404).send('User not found!')
         }
-        if ( !(bcrypt.compare(password, findUser.password))) {            
+        if ( !(bcrypt.compare(password, user.password))) {            
             res.status(404).send('Incorrect password!')
         }
         const token = jwt.sign(

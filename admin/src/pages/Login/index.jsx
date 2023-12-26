@@ -11,23 +11,23 @@ const validationSchema = Yup.object().shape({
     .required('Password is required'),
 });
 
-const SignUpForm = () => {
+const LoginForm = () => {
   const initialValues = {
     username: '',
     password: '',
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
-    // Handle form submission here
+    // Handle login submission here (e.g., API call, authentication)
     console.log(values);
     setSubmitting(false);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h1 className="text-center text-3xl font-extrabold text-gray-900 mb-4">Sign Up</h1>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Login</h2>
         </div>
         <Formik
           initialValues={initialValues}
@@ -70,7 +70,7 @@ const SignUpForm = () => {
                   disabled={isSubmitting}
                   className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Submit
+                  Login
                 </button>
               </div>
             </Form>
@@ -81,4 +81,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default LoginForm;
